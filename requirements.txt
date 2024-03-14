@@ -1,0 +1,13 @@
+Pillow #not sure about this one
+
+#API
+fastapi
+uvicorn
+tensorflow
+
+#.env
+python-dotenv
+
+#streamlit
+streamlit
+requests
