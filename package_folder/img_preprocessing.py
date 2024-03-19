@@ -1,13 +1,15 @@
 from PIL import Image
-import requests
-from io import BytesIO
+from tensorflow.keras.preprocessing.image import img_to_array
+from PIL import Image
+import numpy as np
 
-def getImage(img):
+def get_image(img):
+    img = img.resize((224, 224))
+    return img
 
-  # Grabs an image based on its URL, and resize it
-
-  #response = requests.get(url)
-  #img = Image.open(BytesIO(response.content))  # do I need this one?
-  #plt.imshow(img)
-  img = img.resize((224, 224))
-  return img
+def img_preprocessing(img):
+    #img = Image.open(img)
+    img = get_image(img)
+    img = img_to_array(img)
+    img = np.expand_dims(img, axis=0)
+    return img
