@@ -1,57 +1,18 @@
-from fastapi import FastAPI, File, UploadFile
-#import tensorflow as tf
-from package_folder.img_preprocessing import getImage
+from fastapi import FastAPI, File, UploadFile, HTTPException
+from package_folder.img_preprocessing import img_preprocessing
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import img_to_array
-from io import BytesIO
-from fastapi.responses import JSONResponse
 from PIL import Image
-import numpy as np
-import requests
-
+from io import BytesIO
+#from fastapi.responses import JSONResponse
 
 api = FastAPI()
 
-# define a root `/` endpoint
+#define a root `/` endpoint
 @api.get("/")
 def index():
     return {"greeting": "well done"}
 
 '''
-@api.get("/predict")
-def predict(feature1, feature2):
-
-    #model = tf.keras.saving.load_model("the path to the model folder")
-    #prediction = model.predict(inputs needed)
-    #pretty_prediction = from_number_to_string(float(prediction[0]))
-
-    # Here, I'm only returning the features, since I don't actually have a model.
-    # In a real life setting, you would return the predictions.
-    #return {'prediction': pretty_prediction}
-    return {'prediction': int(feature1)*int(feature2)}'''
-'''
-@api.get("/predict")
-def predict(image_path):
-    response = requests.get(image_path)
-    img = Image.open(BytesIO(response.content))
-
-    img = getImage(img)
-    img = img_to_array(img)
-    img = img.reshape((-1, 224, 224, 3))
-    model = load_model('models/model.h5')
-    res = model.predict(img)[0][0]
-    if(res < 0.5):
-      mole = 'Melanoma' #how do we know that 0 is melanoma?
-      prob = 1-res
-    if(res >= 0.5):
-      mole = 'NotMelanoma'   #how do we know that 1 is not melanoma?
-      prob = res
-      print('Mole : ', mole)
-      print('Probability = ', prob)
-
-      return {'Mole_prediction': mole} '''
-
-
 @api.post("/predict")
 async def predict(file: UploadFile = File(...)):
     contents = await file.read()
@@ -59,6 +20,7 @@ async def predict(file: UploadFile = File(...)):
     img = getImage(img)  # Ensure this function adjusts the image to the expected input format
     img = img_to_array(img)
     img = np.expand_dims(img, axis=0)  # Use np.expand_dims for clarity
+    print(img)
     model = load_model('models/model.h5')
     res = model.predict(img)[0][0]
     if res < 0.5:
@@ -67,4 +29,58 @@ async def predict(file: UploadFile = File(...)):
     else:
         mole = 'NotMelanoma'
         prob = res
-    return JSONResponse(content={"Mole_prediction": mole, "Probability": prob})
+    #return JSONResponse(content={"Mole_prediction": mole, "Probability": prob})
+    return {"Mole_prediction": mole}
+'''
+
+'''
+@api.post("/predict")
+async def predict(img: UploadFile = File(...)):
+    img = img.file.read()
+    ######################
+    img = Image.open(BytesIO(img))
+    print(img.size)
+
+    img_pre_proc=img_preprocessing(img)
+    print('success')
+    model = load_model('models/base_model_01.keras')
+    res = model.predict(img_pre_proc)[0][0]
+    res_type=type(res)
+    print (f'RESULT IS {res}, with type {res_type}')
+
+    if res < 0.5:
+        mole = 'Melanoma'
+        prob = str(1 - res)
+    else:
+        mole = 'NotMelanoma'
+        prob = str(res)
+    print (f"Mole_prediction: {mole}, with probability of: {prob}")
+    return {"Mole_prediction": mole, "with probability of": prob}
+    '''
+
+#predict ("notebooks/data/test/Melanoma/AUG_0_14.jpeg")
+#predict ("notebooks/data/test/NotMelanoma/ISIC_0024337.jpg")
+
+@api.post("/predict")
+
+async def predict(img):
+    img = img.file.read()
+    ######################
+    img = Image.open(BytesIO(img))
+    print(img.size)
+
+    img_pre_proc=img_preprocessing(img)
+    print('success')
+    model = load_model('models/base_model_01.keras')
+    res = model.predict(img_pre_proc)[0][0]
+    res_type=type(res)
+    print (f'RESULT IS {res}, with type {res_type}')
+
+    if res < 0.5:
+        mole = 'Melanoma'
+        prob = str(1 - res)
+    else:
+        mole = 'NotMelanoma'
+        prob = str(res)
+    print (f"Mole_prediction: {mole}, with probability of: {prob}")
+    return {"Mole_prediction": mole, "with probability of": prob}

@@ -7,16 +7,18 @@ COPY requirements.txt requirements.txt
 COPY setup.py setup.py
 COPY models models
 
+
 # RUN allows you to run terminal commands when your image gets created
 # Here, we upgrade pip and install the libraries in our requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -e .
+#RUN pip install -r requirements.txt
 
 # CMD controls the functionality of the container
 # Here, we use uvicorn to control the web server ports
 
 # local
-CMD uvicorn package_folder.api_backend:api --host 0.0.0.0
+#CMD uvicorn package_folder.api_backend:api --host 0.0.0.0
 
 # deploy to gcp
-#CMD uvicorn package_folder.api_backend:api --host 0.0.0.0 --port $PORT
+CMD uvicorn package_folder.api_backend:api --host 0.0.0.0 --port $PORT
