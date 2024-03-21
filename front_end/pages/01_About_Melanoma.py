@@ -35,10 +35,13 @@ highlighted_text_title = (
 )
 st.markdown(highlighted_text_title, unsafe_allow_html=True)
 
-def display_side_content(active_tab):
-    if active_tab == "About Melanoma":
-        image_path = get_image_path('about_1.jpg')
-        st.image(image_path, width=500)
+def display_side_content(side):
+    if side == "About":
+        current_dir = os.path.dirname(__file__)  # Gets the directory where the script is located
+        image_path = os.path.join(current_dir, "images", "about_1.jpg")
+        st.image(image_path, width=700)
+
+        # st.write("<span style=\"font-size:20px\">**Melanoma**</span>", unsafe_allow_html=True)
 
         st.markdown("""
         - <span style="font-size:larger">most invasive skin cancer with the highest risk of death</span>
