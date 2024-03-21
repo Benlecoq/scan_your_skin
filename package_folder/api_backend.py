@@ -7,7 +7,7 @@ from io import BytesIO
 
 api = FastAPI()
 
-#define a root `/` endpoint
+#define a root `/` endpointk
 @api.get("/")
 def index():
     return {"greeting": "well done"}
@@ -58,11 +58,23 @@ async def predict(img: UploadFile = File(...)):
     return {"Mole_prediction": mole, "with probability of": prob}
     '''
 
-#predict ("notebooks/data/test/Melanoma/AUG_0_14.jpeg")
-#predict ("notebooks/data/test/NotMelanoma/ISIC_0024337.jpg")
+'''
+# @api.post("/predict")
+# async def predict(img: UploadFile = File(...)):
+#     img = img.file.read()
+#     img = Image.open(BytesIO(img))
+#     img_pre_proc=img_preprocessing(img)
+#     model = load_model('models/base_model_01.keras')
+#     res = model.predict(img_pre_proc)[0][0]
+#     if res < 0.5:
+#         mole = 'Melanoma'
+#         prob = str(1 - res)
+#     else:
+#         mole = 'NotMelanoma'
+#         prob = str(res)
+#     return {"Mole_prediction": mole, "with probability of": prob}'''
 
 @api.post("/predict")
-
 async def predict(img):
     img = img.file.read()
     ######################
@@ -84,3 +96,18 @@ async def predict(img):
         prob = str(res)
     print (f"Mole_prediction: {mole}, with probability of: {prob}")
     return {"Mole_prediction": mole, "with probability of": prob}
+
+'''# @api.post("/predict")
+# async def predict(img: UploadFile = File(...)):
+#     img_data = img.file.read()
+#     img = Image.open(BytesIO(img_data))
+#     img_pre_proc = img_preprocessing(img)
+#     model = load_model('models/plant_model_weights.keras')
+#     res = model.predict(img_pre_proc)[0][0]
+#     if res < 0.5:
+#         mole = 'Melanoma'
+#         prob = str(1 - res)
+#     else:
+#         mole = 'NotMelanoma'
+#         prob = str(res)
+#     return {"Mole_prediction": mole, "Probability": prob}  # Ensure prob is converted to float if necessary'''
