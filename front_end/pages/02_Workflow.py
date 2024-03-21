@@ -71,10 +71,13 @@ def subpage1():
         display_side_content(active_tab)
 
 
+
+
 # Define function to display subpage 2 content
 def subpage2():
     st.header("Prediction Model")
-    st.write("explain the differemt models, how many parameters have we used, learning curves diagrams.")
+    st.image("images/liri_1.png", width=1000)
+    st.image("images/liri_2.png", width=1000)
 
 # Create sidebar navigation menu
 subpage = st.sidebar.radio("Workflow", ["Data", "Prediction Model"])

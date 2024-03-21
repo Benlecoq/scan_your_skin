@@ -2,7 +2,6 @@ import streamlit as st
 from PIL import Image
 
 # Sidebar
-
 st.sidebar.markdown('''
 ## <span style="font-size: 14px;">Jihyeong LEE</span><br><span style="font-size: 14px;">Julijana STEIMLE</span><br><span style="font-size: 14px;">Liridone ZHUGOLLI</span><br><span style="font-size: 14px;">Loredana HOREZEANU</span>
 ''', unsafe_allow_html=True)
@@ -10,30 +9,60 @@ st.sidebar.markdown('''
 
 # Title
 highlighted_text_title = (
-    "<span style='font-size: 30px; color: gray; text-decoration: underline overline;font-family: Calibri; '>"
+    "<span style='font-size: 40px; color: gray; text-decoration: underline overline;font-family: Calibri; '>"
     "**SCAN YOUR SKIN**"
     "</span>"
 )
 st.markdown(highlighted_text_title, unsafe_allow_html=True)
 
+def display_side_content(side):
+    if side == "About":
+        st.image("images/about_1.jpg", width = 500)  # Display the image
 
-# Define the text with custom HTML and CSS styling
-highlighted_text = (
-    "<span style='font-size: 25px; color: gray;  font-family: Calibri; '>"
-    "What's Melanoma?"
-    "</span>"
-)
+        # st.write("<span style=\"font-size:20px\">**Melanoma**</span>", unsafe_allow_html=True)
+
+        st.markdown("""
+        - <span style="font-size:larger">most invasive skin cancer with the highest risk of death</span>
+        - <span style="font-size:larger">grows fast and can spread to any organ</span>
+        - <span style="font-size:larger">high survival rate with early diagnosis but diminishes fast as melanoma progresses</span>
+        """, unsafe_allow_html=True)  # Display the text
+
+    elif side == "Motivation":
+
+        st.image("images/survival_rate.png", width=700)  # Display the image
+        # st.write("<span style=\"font-size:20px\">**Melanoma**</span>", unsafe_allow_html=True)
+
+        st.markdown("""
+        - <span style="font-size:larger">Accuracy rate of diagnosis: about 60% (up to 89% with dermoscopy)</span>
+        - <span style="font-size:larger">Still challenging to diagnose early melanoma</span>
+        - <span style="font-size:larger">Using computer-aided methods can improve diagnostic accuracy and increase survival rate of patients</span>
+            """, unsafe_allow_html=True)  # Display the text
 
 
-# Display the rest of the text using the st.text_area function
-rest_of_text = (
-    "Melanoma is a kind of skin cancer that starts in the melanocytes. Melanocytes are cells that make the pigment that gives skin its color. The pigment is called melanin. Melanoma typically starts on skin that's often exposed to the sun. This includes the skin on the arms, back, face and legs. Melanoma also can form in the eyes. Rarely, it can happen inside the body, such as in the nose or throat. The exact cause of all melanomas isn't clear. Most melanomas are caused by exposure to ultraviolet light. Ultraviolet light, also called UV light, comes from sunlight or tanning lamps and beds. Limiting exposure to UV light can help reduce the risk of melanoma. The risk of melanoma seems to be increasing in people under 40, especially women. Knowing the symptoms of skin cancer can help ensure that cancerous changes are detected and treated before the cancer has spread. Melanoma can be treated successfully if it is found early."
-)
-st.markdown(highlighted_text, unsafe_allow_html=True)
-st.text_area("▶", rest_of_text)
 
-#IMAGE (https://docs.streamlit.io/library/api-reference/media/st.image)
-st.image("images/melanoma_image.jpg") #caption='Source: '
+def horizontal_tabs(default_tabs=[], default_active_tab=0):
+    selected_tab = st.session_state.get('selected_tab', default_tabs[default_active_tab])
 
-# Page Link
-st.page_link("https://www.mayoclinic.org/diseases-conditions/melanoma/symptoms-causes/syc-20374884", label="Click! for more Information", icon="👉")
+    if not default_tabs:
+        return None
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        active_tab_1 = st.button("About", key="About", help="Click to select tab")
+        if active_tab_1:
+            selected_tab = "About"
+
+    with col2:
+        active_tab_2 = st.button("Motivation", key="Motivation", help="Click to select tab")
+        if active_tab_2:
+            selected_tab = "Motivation"
+
+    st.session_state.selected_tab = selected_tab
+    return selected_tab
+
+tabs_list = ["About", "Motivation"]
+active_tab = horizontal_tabs(tabs_list)
+
+if active_tab:
+    display_side_content(active_tab)
