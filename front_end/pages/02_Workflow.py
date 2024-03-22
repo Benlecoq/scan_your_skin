@@ -27,10 +27,10 @@ def display_side_content(side):
             
     elif side == "Preprocessing":
         st.markdown("<span style=\"font-size:20px; color: gray;\">**Dataset Clustering**</span>", unsafe_allow_html=True)
-        st.markdown("- <span style=\"font-size:18px; color: gray;\">Data augmentation for balancing the data</span>\n"
-                    "- <span style=\"font-size:20px; color: gray;\">Reshaping of images to **224x224 pixels** for **CNN processing**, normalized</span>", unsafe_allow_html=True)
         image_path = get_image_path('data_new.png')
         st.image(image_path, width=1000)
+        st.markdown("- <span style=\"font-size:18px; color: gray;\">Data augmentation for balancing the data</span>\n"
+                    "- <span style=\"font-size:20px; color: gray;\">Reshaping of images to **224x224 pixels** for **CNN processing**, normalized</span>", unsafe_allow_html=True)
 
     elif side == "Process":
         st.markdown("<span style=\"font-size:20px; color: gray;\">**From data to prediction**</span>", unsafe_allow_html=True)
@@ -43,9 +43,7 @@ def display_side_content(side):
         st.image(image_path, width=1000)
 
     elif side == "Prediction Model":
-        st.markdown("""
-            - <span style="font-size:25px; color: gray;">Learning Curves and Performance Metrics</span>
-            """, unsafe_allow_html=True)
+        st.markdown("<span style=\"font-size:20px; color: gray;\">**Learning Curves and Performance Metrics**</span>", unsafe_allow_html=True)
         image_path = get_image_path('learning_curves.png')
         st.image(image_path, width=1000)
     
