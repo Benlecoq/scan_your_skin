@@ -1,39 +1,70 @@
 import streamlit as st
 from PIL import Image
+import os
+
+# Function to get the absolute path of the image file
+def get_image_path(image_name):
+    # Get the directory of the current script
+    current_dir = os.path.dirname(__file__)
+    # Construct the path to the image
+    image_path = os.path.join(current_dir, 'images', image_name)
+    return image_path
+
+# Display content based on the active tab
+def display_side_content(active_tab):
+    if active_tab == "About":
+        # Use the function to get the correct image path for "About" tab
+        image_path = get_image_path('about_1.jpg')
+        st.image(image_path, width=700)
+        st.markdown("""
+        - <span style="font-size:larger">most invasive skin cancer with the highest risk of death</span>
+        - <span style="font-size:larger">grows fast and can spread to any organ</span>
+        - <span style="font-size:larger">high survival rate with early diagnosis but diminishes fast as melanoma progresses</span>
+        """, unsafe_allow_html=True)
+
+    elif active_tab == "Motivation":
+        # Use the function to get the correct image path for "Motivation" tab
+        image_path = get_image_path('survival_rate.png')
+        st.image(image_path, width=700)
+        st.markdown("""
+        - <span style="font-size:larger">Accuracy rate of diagnosis: about 60% (up to 89% with dermoscopy)</span>
+        - <span style="font-size:larger">Still challenging to diagnose early melanoma</span>
+        - <span style="font-size:larger">Using computer-aided methods can improve diagnostic accuracy and increase survival rate of patients</span>
+        """, unsafe_allow_html=True)
 
 # Sidebar
-
 st.sidebar.markdown('''
 ## <span style="font-size: 14px;">Jihyeong LEE</span><br><span style="font-size: 14px;">Julijana STEIMLE</span><br><span style="font-size: 14px;">Liridone ZHUGOLLI</span><br><span style="font-size: 14px;">Loredana HOREZEANU</span>
 ''', unsafe_allow_html=True)
 
-
 # Title
 highlighted_text_title = (
-    "<span style='font-size: 30px; color: gray; text-decoration: underline overline;font-family: Calibri; '>"
+    "<span style='font-size: 40px; color: gray; text-decoration: underline overline;font-family: Calibri; '>"
     "**SCAN YOUR SKIN**"
     "</span>"
 )
 st.markdown(highlighted_text_title, unsafe_allow_html=True)
 
+# Function to handle horizontal tabs
+def horizontal_tabs(default_tabs=[], default_active_tab=0):
+    selected_tab = st.session_state.get('selected_tab', default_tabs[default_active_tab])
 
-# Define the text with custom HTML and CSS styling
-highlighted_text = (
-    "<span style='font-size: 25px; color: gray;  font-family: Calibri; '>"
-    "What's Melanoma?"
-    "</span>"
-)
+    if not default_tabs:
+        return None
 
+    cols = st.columns(len(default_tabs))
+    for index, tab_name in enumerate(default_tabs):
+        with cols[index]:
+            if st.button(tab_name, key=tab_name):
+                selected_tab = tab_name
 
-# Display the rest of the text using the st.text_area function
-rest_of_text = (
-    "Melanoma is a kind of skin cancer that starts in the melanocytes. Melanocytes are cells that make the pigment that gives skin its color. The pigment is called melanin. Melanoma typically starts on skin that's often exposed to the sun. This includes the skin on the arms, back, face and legs. Melanoma also can form in the eyes. Rarely, it can happen inside the body, such as in the nose or throat. The exact cause of all melanomas isn't clear. Most melanomas are caused by exposure to ultraviolet light. Ultraviolet light, also called UV light, comes from sunlight or tanning lamps and beds. Limiting exposure to UV light can help reduce the risk of melanoma. The risk of melanoma seems to be increasing in people under 40, especially women. Knowing the symptoms of skin cancer can help ensure that cancerous changes are detected and treated before the cancer has spread. Melanoma can be treated successfully if it is found early."
-)
-st.markdown(highlighted_text, unsafe_allow_html=True)
-st.text_area("▶", rest_of_text)
+    st.session_state.selected_tab = selected_tab
+    return selected_tab
 
-#IMAGE (https://docs.streamlit.io/library/api-reference/media/st.image)
-st.image("images/melanoma_image.jpg") #caption='Source: '
+# Define tabs and get the currently active tab
+tabs_list = ["About", "Motivation"]
+active_tab = horizontal_tabs(tabs_list)
 
-# Page Link
-st.page_link("https://www.mayoclinic.org/diseases-conditions/melanoma/symptoms-causes/syc-20374884", label="Click! for more Information", icon="👉")
+# Display content for the active tab
+if active_tab:
+    display_side_content(active_tab)

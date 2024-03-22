@@ -2,74 +2,34 @@ import streamlit as st
 
 st.header("Contacts")
 
-# Add the team members' names vertically with narrow line spacing and centered
-team_members = (
-    "<div style='line-height: 1.3; display: flex; align-items: center;'>"
-    "<span style='font-size: 20px; color: black; font-family: Calibri; font-weight: bold;'>"
-    "Jihyeong LEE"
-    "</span>"
-    "<a href='mailto:lee.jihyeong.426@gmail.com'>"
-    "<img src='https://img.shields.io/badge/-lee.jihyeong.426@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white' alt='Mail Badge' style='margin-left: 10px;'>"
-    "</a>"
-    "</div>"
-)
+# Define a list of team members with their names and email addresses
+team_members = [
+    {"name": "Jihyeong LEE", "email": "lee.jihyeong.426@gmail.com"},
+    {"name": "Julijana STEIMLE", "email": "jn.steimle@gmail.com"},
+    {"name": "Liridone ZHUGOLLI", "email": "liridona.zhugolli@gmail.com"},
+    {"name": "Loredana HOREZEANU", "email": "horezeanu1h@gmail.com"},
+]
 
-# Render the team members
-st.markdown(team_members, unsafe_allow_html=True)
-
-
-team_members = (
-    "<div style='line-height: 1.3; display: flex; align-items: center;'>"
-    "<span style='font-size: 20px; color: black; font-family: Calibri; font-weight: bold;'>"
-    "Julijana STEIMLE"
-    "</span>"
-    "<a href='mailto:jn.steimle@gmail.com'>"
-    "<img src='https://img.shields.io/badge/-jn.steimle@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white' alt='Mail Badge' style='margin-left: 10px;'>"
-    "</a>"
-    "</div>"
-)
-
-# Render the team members
-st.markdown(team_members, unsafe_allow_html=True)
-
-
-team_members = (
-    "<div style='line-height: 1.3; display: flex; align-items: center;'>"
-    "<span style='font-size: 20px; color: black; font-family: Calibri; font-weight: bold;'>"
-    "Liridone ZHUGOLLI"
-    "</span>"
-    "<a href='mailto:liridona.zhugolli@gmail.com'>"
-    "<img src='https://img.shields.io/badge/-liridona.zhugolli@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white' alt='Mail Badge' style='margin-left: 10px;'>"
-    "</a>"
-    "</div>"
-)
-
-# Render the team members
-st.markdown(team_members, unsafe_allow_html=True)
-
-
-team_members = (
-    "<div style='line-height: 1.3; display: flex; align-items: center;'>"
-    "<span style='font-size: 20px; color: black; font-family: Calibri; font-weight: bold;'>"
-    "Loredana HOREZEANU"
-    "</span>"
-    "<a href='mailto:horezeanu1h@gmail.com'>"
-    "<img src='https://img.shields.io/badge/-horezeanu1h@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white' alt='Mail Badge' style='margin-left: 10px;'>"
-    "</a>"
-    "</div>"
-)
-
-# Render the team members
-st.markdown(team_members, unsafe_allow_html=True)
+# Iterate over the team members to render their contact information
+for member in team_members:
+    team_member_html = (
+        f"<div style='line-height: 1.3; display: flex; align-items: center;'>"
+        f"<span style='font-size: 20px; color: black; font-family: Calibri; font-weight: bold;'>"
+        f"{member['name']}"
+        f"</span>"
+        f"<a href='mailto:{member['email']}'>"
+        f"<img src='https://img.shields.io/badge/-{member['email']}-c14438?style=flat-square&logo=Gmail&logoColor=white' alt='Mail Badge' style='margin-left: 10px;'>"
+        f"</a>"
+        f"</div>"
+    )
+    st.markdown(team_member_html, unsafe_allow_html=True)
 
 # Add a spacer for layout
-st.write("")# Add a spacer for layout
 st.write("")
 
-# 뒷부분을 Githuh URL 로 바꾸기
-import streamlit as st
-
+# GitHub URL
 github_url = "https://github.com/liridonezhk/scan_your_skin"
-github_shields_url = f"https://img.shields.io/github/stars/{github_url.split('/')[-2]}/{github_url.split('/')[-1]}?style=social"
+github_user_repo = "/".join(github_url.split('/')[-2:])
+github_shields_url = f"https://img.shields.io/github/stars/{github_user_repo}?style=social"
 
-st.markdown(f"Click to endorse: <a href='{github_url}'><img src='{github_shields_url}' alt='GitHub Repo stars' style='color:black'></a>", unsafe_allow_html=True)
+st.markdown(f"Click to endorse: <a href='{github_url}'><img src='{github_shields_url}' alt='GitHub Repo stars' style='margin-left: 10px;'></a>", unsafe_allow_html=True)
