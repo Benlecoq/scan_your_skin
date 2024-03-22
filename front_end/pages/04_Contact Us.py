@@ -53,4 +53,4 @@ def get_image_path(image_name):
 
 
 image_path = get_image_path('QR_code.png')
-st.image(image_path)
+st.image(image_path, width=200)
