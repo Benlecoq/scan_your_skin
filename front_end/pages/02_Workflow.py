@@ -22,7 +22,7 @@ def subpage1():
     def display_side_content(side):
         if side == "Data":
             image_path = get_image_path('workflow_data.png')
-            st.image(image_path, width=1000)
+            st.image(image_path, width=700)
             st.markdown("<span style=\"font-size:20px\">**Dataset**</span>", unsafe_allow_html=True)
             st.markdown("- <span style=\"font-size:18px\">Kaggle dataset from the original **HAM10000** (Human Against Machine with 10,000 Training images) dataset.</span>", unsafe_allow_html=True)
             
