@@ -5,7 +5,7 @@ import os
 # Function to get the absolute path of the image file
 def get_image_path(image_name):
     # Specify the correct directory path
-    directory_path = "/scan_your_skin/front_end/images/"
+    directory_path = "/mount/src/scan_your_skin/front_end/images/"
     # Construct the full path to the image
     image_path = os.path.join(directory_path, image_name)
     return image_path
