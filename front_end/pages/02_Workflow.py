@@ -21,24 +21,23 @@ def get_image_path(image_name):
 def subpage1():
     def display_side_content(side):
         if side == "Data":
-            image_path = get_image_path('workflow_data.png')
+            st.markdown("<span style=\"font-size:20px; color: gray;\">**Dataset**</span>", unsafe_allow_html=True)            image_path = get_image_path('workflow_data.png')
             st.image(image_path, width=1000)
-            st.markdown("<span style=\"font-size:20px\">**Dataset**</span>", unsafe_allow_html=True)
-            st.markdown("- <span style=\"font-size:18px\">Kaggle dataset from the original **HAM10000** (Human Against Machine with 10,000 Training images) dataset.</span>", unsafe_allow_html=True)
+            st.markdown("- <span style=\"font-size:18px; color:gray;\">Kaggle dataset from the original **HAM10000** (Human Against Machine with 10,000 Training images) dataset.</span>", unsafe_allow_html=True)
             
         elif side == "Preprocessing":
-            st.markdown("- <span style=\"font-size:18px\">Data augmentation for balancing the data</span>\n"
-                        "- <span style=\"font-size:20px\">Reshaping of images to **224x224 pixels** for **CNN processing**, normalized</span>", unsafe_allow_html=True)
+            st.markdown("- <span style=\"font-size:18px; color: gray;\">Data augmentation for balancing the data</span>\n"
+                        "- <span style=\"font-size:20px; color: gray;\">Reshaping of images to **224x224 pixels** for **CNN processing**, normalized</span>", unsafe_allow_html=True)
             image_path = get_image_path('data_new.png')
             st.image(image_path, width=1000)
 
         elif side == "Process":
-            st.markdown("<span style=\"font-size:20px\">**From data to prediction**</span>", unsafe_allow_html=True)
+            st.markdown("<span style=\"font-size:20px; color: gray;\">**From data to prediction**</span>", unsafe_allow_html=True)
             image_path = get_image_path('process_new.png')
             st.image(image_path, width=1000)
 
         elif side == "Kernels":
-            st.markdown("<span style=\"font-size:20px\">**what happens in the black box**</span>", unsafe_allow_html=True)
+            st.markdown("<span style=\"font-size:20px; color: gray;\">**what happens in the black box**</span>", unsafe_allow_html=True)
             image_path = get_image_path('feature_extraction.png')
             st.image(image_path, width=1000)
 
