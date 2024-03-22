@@ -45,24 +45,18 @@ highlighted_text_title = (
 )
 st.markdown(highlighted_text_title, unsafe_allow_html=True)
 
-# Define function to handle horizontal tabs
+# Function to handle horizontal tabs
 def horizontal_tabs(default_tabs=[], default_active_tab=0):
     selected_tab = st.session_state.get('selected_tab', default_tabs[default_active_tab])
 
     if not default_tabs:
         return None
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        active_tab_1 = st.button("About", key="About", help="Click to select tab")
-        if active_tab_1:
-            selected_tab = "About"
-
-    with col2:
-        active_tab_2 = st.button("Motivation", key="Motivation", help="Click to select tab")
-        if active_tab_2:
-            selected_tab = "Motivation"
+    cols = st.columns(len(default_tabs))
+    for index, tab_name in enumerate(default_tabs):
+        with cols[index]:
+            if st.button(tab_name, key=tab_name):
+                selected_tab = tab_name
 
     st.session_state.selected_tab = selected_tab
     return selected_tab
