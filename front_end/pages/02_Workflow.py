@@ -65,11 +65,9 @@ def subpage1():
 
 # Function to display content for the second subpage
 def subpage2():
-    st.header("Prediction Model")
-    image_path1 = get_image_path('liri_1.png')
+    st.header("Learning Curves and Performance Metrics")
+    image_path1 = get_image_path('learning_curves.png')
     st.image(image_path1, width=1000)
-    image_path2 = get_image_path('liri_2.png')
-    st.image(image_path2, width=1000)
 
 # Create sidebar navigation menu
 subpage = st.sidebar.radio("Workflow", ["Data", "Prediction Model"])
