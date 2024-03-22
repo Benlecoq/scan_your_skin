@@ -21,7 +21,7 @@ st.write("")
 # Construct an absolute path to the image
 current_dir = os.path.dirname(__file__)  # Gets the directory where the script is located
 image_path = os.path.join(current_dir, "images", "welcome.jpg")
-st.image(image_path)
+st.image(image_path, use_column_width=True)
 
 # Add the team members' names vertically with narrow line spacing and centered
 # <<<<<<< HEAD

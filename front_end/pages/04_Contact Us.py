@@ -33,3 +33,13 @@ github_user_repo = "/".join(github_url.split('/')[-2:])
 github_shields_url = f"https://img.shields.io/github/stars/{github_user_repo}?style=social"
 
 st.markdown(f"Click to endorse: <a href='{github_url}'><img src='{github_shields_url}' alt='GitHub Repo stars' style='margin-left: 10px;'></a>", unsafe_allow_html=True)
+
+# Add a spacer for layout
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+
+image_path = os.path.join(current_dir, "images", "QR_code.png")
+st.image(image_path)
