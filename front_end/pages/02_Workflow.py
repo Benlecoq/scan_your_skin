@@ -38,7 +38,7 @@ def subpage1():
             st.image(image_path, width=1000)
 
         elif side == "Kernels":
-            st.markdown("<span style=\"font-size:20px; color: gray;\">**what happens in the black box**</span>", unsafe_allow_html=True)
+            st.markdown("<span style=\"font-size:20px; color: gray;\">**What happens in the black box**</span>", unsafe_allow_html=True)
             image_path = get_image_path('feature_extraction.png')
             st.image(image_path, width=1000)
 
@@ -66,7 +66,7 @@ def subpage1():
 # Function to display content for the second subpage
 def subpage2():
     st.markdown("""
-        - <span style="font-size:30px; color: gray;">Learning Curves and Performance Metrics</span>
+        - <span style="font-size:25px; color: gray;">Learning Curves and Performance Metrics</span>
         """, unsafe_allow_html=True)
     image_path1 = get_image_path('learning_curves.png')
     st.image(image_path1, width=1000)
