@@ -10,6 +10,13 @@ highlighted_text_title = (
 )
 st.markdown(highlighted_text_title, unsafe_allow_html=True)
 
+# Sidebar
+st.sidebar.markdown('''
+## <span style="font-size: 14px;">Jihyeong LEE</span><br><span style="font-size: 14px;">Julijana STEIMLE</span><br><span style="font-size: 14px;">Liridone ZHUGOLLI</span><br><span style="font-size: 14px;">Loredana HOREZEANU</span>
+''', unsafe_allow_html=True)
+
+
+
 predict_url = 'https://melcont-frvnbh56ia-ew.a.run.app/predict'
 two_mode = st.selectbox('Choose How', ['Upload Image File', 'Live Capture'])
 
