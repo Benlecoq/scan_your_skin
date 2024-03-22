@@ -65,9 +65,15 @@ def subpage1():
 
 # Function to display content for the second subpage
 def subpage2():
-    st.header("Learning Curves and Performance Metrics")
+    st.markdown("""
+        - <span style="font-size:30px; color: gray;">Learning Curves and Performance Metrics</span>
+        """, unsafe_allow_html=True)
     image_path1 = get_image_path('learning_curves.png')
     st.image(image_path1, width=1000)
+
+
+
+
 
 # Create sidebar navigation menu
 subpage = st.sidebar.radio("Workflow", ["Data", "Prediction Model"])
