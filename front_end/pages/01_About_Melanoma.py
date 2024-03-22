@@ -15,7 +15,7 @@ def display_side_content(active_tab):
     if active_tab == "About":
         # Use the function to get the correct image path for "About" tab
         image_path = get_image_path('about_1.jpg')
-        st.image(image_path, width=700)
+        st.image(image_path, width=550)
         st.markdown("""
         - <span style="font-size:larger">most invasive skin cancer with the highest risk of death</span>
         - <span style="font-size:larger">grows fast and can spread to any organ</span>

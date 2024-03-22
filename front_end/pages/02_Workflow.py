@@ -1,6 +1,14 @@
 import streamlit as st
 import os
 
+# Title
+highlighted_text_title = (
+    "<span style='font-size: 40px; color: gray; text-decoration: underline overline;font-family: Calibri; '>"
+    "**SCAN YOUR SKIN**"
+    "</span>"
+)
+st.markdown(highlighted_text_title, unsafe_allow_html=True)
+
 # Function to get the absolute path of the image file
 def get_image_path(image_name):
     # Specify the correct directory path
@@ -13,12 +21,11 @@ def get_image_path(image_name):
 def subpage1():
     def display_side_content(side):
         if side == "Data":
-            image_path = get_image_path('small_imgs_mel_01.jpg')
-            st.image(image_path, width=800)
+            image_path = get_image_path('workflow_data.png')
+            st.image(image_path, width=1000)
             st.markdown("<span style=\"font-size:20px\">**Dataset**</span>", unsafe_allow_html=True)
             st.markdown("- <span style=\"font-size:18px\">Kaggle dataset from the original **HAM10000** (Human Against Machine with 10,000 Training images) dataset.</span>", unsafe_allow_html=True)
-            st.markdown("📊 Source: [Kaggle Melanoma Dataset](https://www.kaggle.com/datasets/drscarlat/melanoma)")
-
+            
         elif side == "Preprocessing":
             st.markdown("- <span style=\"font-size:18px\">Data augmentation for balancing the data</span>\n"
                         "- <span style=\"font-size:20px\">Reshaping of images to **224x224 pixels** for **CNN processing**, normalized</span>", unsafe_allow_html=True)
