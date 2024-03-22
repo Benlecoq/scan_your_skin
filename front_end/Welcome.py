@@ -24,6 +24,7 @@ image_path = os.path.join(current_dir, "images", "welcome.jpg")
 st.image(image_path, width=700)
 
 # Add the team members' names vertically with narrow line spacing and centered
+# <<<<<<< HEAD
 team_members = (
     "<div style='text-align: center; line-height: 1.3;'>"
     "<span style='font-size: 15px; color: gray; font-family: Calibri; font-weight: bold;'>"
@@ -34,6 +35,18 @@ team_members = (
     "</span>"
     "</div>"
 )
+# =======
+team_members = """
+<div style='text-align: center; line-height: 1.3;'>
+    <span style='font-size: 15px; color: gray; font-family: Calibri; font-weight: bold;'>
+        Jihyeong LEE<br>
+        Julijana STEIMLE<br>
+        Liridone ZHUGOLLI<br>
+        Loredana HOREZEANU
+    </span>
+</div>
+"""
+# >>>>>>> refs/remotes/origin/main
 # Render the team members
 st.markdown(team_members, unsafe_allow_html=True)
 

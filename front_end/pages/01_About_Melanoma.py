@@ -9,8 +9,9 @@ def get_image_path(image_name):
     # Construct the path to the image
     image_path = os.path.join(current_dir, 'images', image_name)
     return image_path
+# <<<<<<< HEAD
 # Display content based on the active tab
-def display_side_content(active_tab):
+# def display_side_content(active_tab):
     if active_tab == "About Melanoma":
         # Use the function to get the correct image path
         image_path = get_image_path('about_1.jpg')
@@ -20,12 +21,35 @@ def display_side_content(active_tab):
 #active_tab = "About Melanoma"  # Assuming this is set somewhere in your code
 #display_side_content(active_tab)
 
+# =======
+
+# Display content based on the active tab
+def display_side_content(active_tab):
+    if active_tab == "About Mlanoma":
+        # Use the function to get the correct image path for "About" tab
+        image_path = get_image_path('about_1.jpg')
+        st.image(image_path, width=700)
+        st.markdown("""
+        - <span style="font-size:larger">most invasive skin cancer with the highest risk of death</span>
+        - <span style="font-size:larger">grows fast and can spread to any organ</span>
+        - <span style="font-size:larger">high survival rate with early diagnosis but diminishes fast as melanoma progresses</span>
+        """, unsafe_allow_html=True)
+
+    elif active_tab == "Motivation":
+        # Use the function to get the correct image path for "Motivation" tab
+        image_path = get_image_path('survival_rate.png')
+        st.image(image_path, width=700)
+        st.markdown("""
+        - <span style="font-size:larger">Accuracy rate of diagnosis: about 60% (up to 89% with dermoscopy)</span>
+        - <span style="font-size:larger">Still challenging to diagnose early melanoma</span>
+        - <span style="font-size:larger">Using computer-aided methods can improve diagnostic accuracy and increase survival rate of patients</span>
+        """, unsafe_allow_html=True)
+# >>>>>>> refs/remotes/origin/main
 
 # Sidebar
 st.sidebar.markdown('''
 ## <span style="font-size: 14px;">Jihyeong LEE</span><br><span style="font-size: 14px;">Julijana STEIMLE</span><br><span style="font-size: 14px;">Liridone ZHUGOLLI</span><br><span style="font-size: 14px;">Loredana HOREZEANU</span>
 ''', unsafe_allow_html=True)
-
 
 # Title
 highlighted_text_title = (
@@ -35,6 +59,7 @@ highlighted_text_title = (
 )
 st.markdown(highlighted_text_title, unsafe_allow_html=True)
 
+# <<<<<<< HEAD
 def display_side_content(side):
     if side == "About":
         current_dir = os.path.dirname(__file__)  # Gets the directory where the script is located
@@ -59,8 +84,22 @@ def display_side_content(side):
         - <span style="font-size:larger">Still challenging to diagnose early melanoma</span>
         - <span style="font-size:larger">Using computer-aided methods can improve diagnostic accuracy and increase survival rate of patients</span>
             """, unsafe_allow_html=True)  # Display the text
+# =======
+# Function to handle horizontal tabs
+def horizontal_tabs(default_tabs=[], default_active_tab=0):
+    selected_tab = st.session_state.get('selected_tab', default_tabs[default_active_tab])
 
+    if not default_tabs:
+        return None
+# >>>>>>> refs/remotes/origin/main
 
+    cols = st.columns(len(default_tabs))
+    for index, tab_name in enumerate(default_tabs):
+        with cols[index]:
+            if st.button(tab_name, key=tab_name):
+                selected_tab = tab_name
+
+# <<<<<<< HEAD
 
 def horizontal_tabs(default_tabs=[], default_active_tab=0):
     selected_tab = st.session_state.get('selected_tab', default_tabs[default_active_tab])
@@ -86,5 +125,15 @@ def horizontal_tabs(default_tabs=[], default_active_tab=0):
 tabs_list = ["About", "Motivation"]
 active_tab = horizontal_tabs(tabs_list)
 
+# =======
+    # st.session_state.selected_tab = selected_tab
+    # return selected_tab
+
+# Define tabs and get the currently active tab
+tabs_list = ["About", "Motivation"]
+active_tab = horizontal_tabs(tabs_list)
+
+# Display content for the active tab
+# >>>>>>> refs/remotes/origin/main
 if active_tab:
     display_side_content(active_tab)
