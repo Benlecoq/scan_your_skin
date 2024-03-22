@@ -52,5 +52,5 @@ def get_image_path(image_name):
     return image_path
 
 
-image_path = os.path.join(current_dir, "images", "QR_code.png")
+image_path = get_image_path('QR_code.png')
 st.image(image_path)
