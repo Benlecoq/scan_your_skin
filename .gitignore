@@ -160,5 +160,4 @@ cython_debug/
 #.idea/
 raw_data/
 notebooks/
-models/
 models_archive/
