@@ -17,9 +17,9 @@ def display_side_content(active_tab):
         image_path = get_image_path('about_1.jpg')
         st.image(image_path, width=550)
         st.markdown("""
-        - <span style="font-size:larger">most invasive skin cancer with the highest risk of death</span>
-        - <span style="font-size:larger">grows fast and can spread to any organ</span>
-        - <span style="font-size:larger">high survival rate with early diagnosis but diminishes fast as melanoma progresses</span>
+        - <span style="font-size:larger; color: gray;">most invasive skin cancer with the highest risk of death</span>
+        - <span style="font-size:larger; color: gray;">grows fast and can spread to any organ</span>
+        - <span style="font-size:larger; color: gray;">high survival rate with early diagnosis but diminishes fast as melanoma progresses</span>
         """, unsafe_allow_html=True)
 
     elif active_tab == "Motivation":
@@ -27,9 +27,9 @@ def display_side_content(active_tab):
         image_path = get_image_path('survival_rate.png')
         st.image(image_path, width=700)
         st.markdown("""
-        - <span style="font-size:larger">Accuracy rate of diagnosis: about 60% (up to 89% with dermoscopy)</span>
-        - <span style="font-size:larger">Still challenging to diagnose early melanoma</span>
-        - <span style="font-size:larger">Using computer-aided methods can improve diagnostic accuracy and increase survival rate of patients</span>
+        - <span style="font-size:larger; color: gray;">Accuracy rate of diagnosis: about 60% (up to 89% with dermoscopy)</span>
+        - <span style="font-size:larger; color: gray;">Still challenging to diagnose early melanoma</span>
+        - <span style="font-size:larger; color: gray;">Using computer-aided methods can improve diagnostic accuracy and increase survival rate of patients</span>
         """, unsafe_allow_html=True)
 
 # Sidebar
