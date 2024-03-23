@@ -46,7 +46,7 @@ def display_side_content(side):
 
     elif side == "Kernels":
         st.markdown("<span style=\"font-size:20px; color: gray;\">**What happens in the black box**</span>", unsafe_allow_html=True)
-        image_path = get_image_path('feature_extraction.png')
+        image_path = get_image_path('feature_extraction_02.png')
         st.image(image_path, width=1200)
 
     elif side == "Prediction Model":
