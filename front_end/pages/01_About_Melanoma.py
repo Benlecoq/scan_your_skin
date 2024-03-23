@@ -39,7 +39,7 @@ st.sidebar.markdown('''
 
 # Title
 highlighted_text_title = (
-    "<span style='font-size: 40px; color: gray; text-decoration: underline overline;font-family: Calibri; '>"
+    "<span style='font-size: 30px; color: gray; text-decoration: underline overline;font-family: Calibri; '>"
     "**SCAN YOUR SKIN**"
     "</span>"
 )
